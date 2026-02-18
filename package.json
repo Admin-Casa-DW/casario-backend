@@ -1,0 +1,19 @@
+{
+  "name": "casario-financeiro-backend",
+  "version": "1.0.0",
+  "description": "Backend API para Sistema Financeiro Casario",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["financeiro", "api"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

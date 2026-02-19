@@ -104,6 +104,7 @@ app.get('/api/sync/:userId', async (req, res) => {
                 suppliers: defaultSuppliers,
                 paymentMethods: defaultPaymentMethods,
                 maintenance: [],
+                maintenanceTypes: [],
                 timestamp: Date.now()
             });
         }
@@ -119,6 +120,7 @@ app.get('/api/sync/:userId', async (req, res) => {
             suppliers: userData.suppliers || defaultSuppliers,
             paymentMethods: userData.paymentMethods || defaultPaymentMethods,
             maintenance: userData.maintenance || [],
+            maintenanceTypes: userData.maintenanceTypes || [],
             timestamp: Date.now()
         });
     } catch (e) {
@@ -130,7 +132,7 @@ app.get('/api/sync/:userId', async (req, res) => {
 // ===== SALVAR DADOS DO USUÁRIO =====
 app.post('/api/sync', async (req, res) => {
     try {
-        const { userId, expenses, income, fleet, notes, systemUsers, years, categories, suppliers, paymentMethods, maintenance } = req.body;
+        const { userId, expenses, income, fleet, notes, systemUsers, years, categories, suppliers, paymentMethods, maintenance, maintenanceTypes } = req.body;
 
         if (!userId) {
             return res.status(400).json({ success: false, error: 'userId obrigatório' });
@@ -149,6 +151,7 @@ app.post('/api/sync', async (req, res) => {
         if (suppliers !== undefined) update.suppliers = suppliers;
         if (paymentMethods !== undefined) update.paymentMethods = paymentMethods;
         if (maintenance !== undefined) update.maintenance = maintenance;
+        if (maintenanceTypes !== undefined) update.maintenanceTypes = maintenanceTypes;
 
         await col.updateOne(
             { userId },

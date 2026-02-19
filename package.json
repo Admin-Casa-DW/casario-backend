@@ -1,7 +1,7 @@
 {
   "name": "casario-financeiro-backend",
-  "version": "1.0.0",
-  "description": "Backend API para Sistema Financeiro Casario",
+  "version": "2.0.0",
+  "description": "Backend API para Sistema de Gestão Casa DW",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.6",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "cloudinary": "^2.0.1"
   },
   "engines": {
     "node": ">=18.0.0"

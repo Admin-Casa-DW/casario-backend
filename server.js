@@ -95,6 +95,7 @@ app.get('/api/sync/:userId', async (req, res) => {
                 fleet: { vehicles: [] },
                 notes: [],
                 systemUsers: [],
+                years: [2024, 2025, 2026],
                 timestamp: Date.now()
             });
         }
@@ -105,6 +106,7 @@ app.get('/api/sync/:userId', async (req, res) => {
             fleet: userData.fleet || { vehicles: [] },
             notes: userData.notes || [],
             systemUsers: userData.systemUsers || [],
+            years: userData.years || [2024, 2025, 2026],
             timestamp: Date.now()
         });
     } catch (e) {
@@ -116,7 +118,7 @@ app.get('/api/sync/:userId', async (req, res) => {
 // ===== SALVAR DADOS DO USUÁRIO =====
 app.post('/api/sync', async (req, res) => {
     try {
-        const { userId, expenses, income, fleet, notes, systemUsers } = req.body;
+        const { userId, expenses, income, fleet, notes, systemUsers, years } = req.body;
 
         if (!userId) {
             return res.status(400).json({ success: false, error: 'userId obrigatório' });
@@ -130,6 +132,7 @@ app.post('/api/sync', async (req, res) => {
         if (fleet !== undefined) update.fleet = fleet;
         if (notes !== undefined) update.notes = notes;
         if (systemUsers !== undefined) update.systemUsers = systemUsers;
+        if (years !== undefined) update.years = years;
 
         await col.updateOne(
             { userId },
